@@ -1,3 +1,21 @@
+// ? alternatif 
+//? counter type declarations
+//* string'ler hataya meyillidir.Bu hatalari minimize etmek icin string type'lari degiskenlere saklanir ve degisken olarak kullanilabilir.
+export const INC = "INC"
+export const DEC = "DEC"
+export const CLR = "CLR"
+
+//! action islemlerini basitlestirmek icin fonksiyonlar yazilabilir. dispatch kolaylaştırmak için. 
+export const decrement = (payload) => {
+  return {type:DEC, payload}
+}
+export const increment = () => {
+  return {type:INC}
+}
+export const clear = () => {
+  return {type:CLR}
+}
+
 
 //? State'lerin baslangic durumlarinin belirlenmesi
 const initialState = {
@@ -5,18 +23,18 @@ const initialState = {
 }
 
 //? Pure Function (reducer)
-export const countReduser = (state = initialState , action) => {
+export const counterReducer = (state = initialState , action) => {
 
 switch(action.type){
-case "INC" :
+case INC :
       return {
             count:state.count + 1  
       }
-case "DEC" :
+case DEC :
       return  {
-            count:state.count - 1  
+        count: state.count <= 0 ? alert("0dan küçük olamaz") : state.count - 1 
       }
-case "CLEAR" :
+case CLR :
       return {
             count:0 
       }
